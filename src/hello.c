@@ -8,15 +8,17 @@ Task helloTask = {
     .loop = loop,
 };
 
-static uint16_t count;
+static struct {
+    uint16_t count;
+} state;
 
 static void setup(void) {
-    count = 0;
+    state.count = 0;
 }
 
 static void loop(void) {
-    print(stdout, "hello! (%i)\n", count);
-    count++;
+    print(stdout, "hello! (%i)\n", state.count);
+    state.count++;
 
     delay(&helloTask, MS_TO_TICKS(1000));
 }
