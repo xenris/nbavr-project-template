@@ -18,5 +18,5 @@ static void loop(void) {
     print(stdout, "hello! (%i)\n", count);
     count++;
 
-    delayMillis(1000);
+    delay(&helloTask, MS_TO_TICKS(1000));
 }
