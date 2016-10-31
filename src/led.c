@@ -16,5 +16,6 @@ static void setup(void) {
 
 static void loop(void) {
     pinToggle(ledPin);
+
     delay(&ledTask, MS_TO_TICKS(1000));
 }
