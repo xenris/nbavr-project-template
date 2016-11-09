@@ -17,7 +17,10 @@ static void setup(void) {
 }
 
 static void loop(void) {
-    print(stdout, "hello! (%i)\n", state.count);
+    printstr(stdout, "hello! (");
+    printi16(stdout, state.count, PrintUDec);
+    printstr(stdout, ")\n");
+
     state.count++;
 
     delay(&helloTask, MS_TO_TICKS(1000));
