@@ -10,10 +10,10 @@ fi
 
 tup
 
-avr-size gen/firmware.elf -C --mcu=$mmcu
+avr-size gen/firmware.elf -C --mcu=$mcu
 
 if [ "${1}" = "-u" ]; then
     pkill picocom && sleep 1 || true
 
-    avrdude -p $mcu -P $port -c $programmer -e -U flash:w:gen/firmware.hex
+    avrdude -p $mcu -P $port -c $programmer -e -U flash:w:gen/firmware.elf
 fi
