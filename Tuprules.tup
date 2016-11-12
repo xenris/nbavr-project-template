@@ -8,7 +8,6 @@ MMCU = atmega328p
 FREQ = 16000000L
 
 CFLAGS = -I$(TUP_CWD)/lib/nbavr/src/
-CFLAGS += -I$(TUP_CWD)/
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
