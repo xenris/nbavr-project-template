@@ -13,7 +13,7 @@ CFLAGS += -Wextra
 CFLAGS += -Werror
 CFLAGS += -ffunction-sections
 CFLAGS += -g
-CFLAGS += -std=c99
+CFLAGS += -std=c11
 CFLAGS += -Os
 CFLAGS += -mmcu=$(MMCU)
 CFLAGS += -DF_CPU=$(FREQ)
@@ -22,6 +22,7 @@ CFLAGS += -fdiagnostics-color=always
 CFLAGS += -Wno-unused-parameter
 CFLAGS += -Wno-unused-function
 CFLAGS += -Wno-attributes
+CFLAGS += -Wno-pointer-to-int-cast
 CFLAGS += -flto
 CFLAGS += -ffreestanding
 
