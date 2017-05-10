@@ -27,4 +27,20 @@ elif [ "${1}" == "-d" ]; then
     kdbg -r localhost:1234 $elf
 
     pkill simavr
+elif [ "${1}" == "-s" ]; then
+    hash simavr 2>/dev/null || { echo >&2 "simavr is not installed."; exit 1; }
+
+    echo "---------------------------------"
+    echo "Exit simulation with ctrl + c"
+    echo "---------------------------------"
+
+    simavr -v -v -t -m $mcu -f $freq $elf
+elif [ "${1}" == "-p" ]; then
+    hash picocom 2>/dev/null || { echo >&2 "picocom is not installed."; exit 1; }
+
+    echo "---------------------------------"
+    echo "Exit picocom with ctrl + (a -> x)"
+    echo "---------------------------------"
+
+    picocom --imap lfcrlf --omap crlf $pico_port
 fi
