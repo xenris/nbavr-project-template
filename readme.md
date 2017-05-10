@@ -6,7 +6,7 @@ This is a template for creating 8-bit Atmel AVR projects using the [nbavr](https
 
 [nbavr](https://github.com/xenris/nbavr) is a c++ library for 8-bit Atmel AVR microprocessors (such as those found on Arduinos).
 
-This template is designed for Linux. Anyone using other OSs will have to work out some things themselves.
+This template is designed to work on Linux.
 
 ## Requirements
 
