@@ -39,7 +39,7 @@ elif [ "${1}" == "-p" ]; then
     hash picocom 2>/dev/null || { echo >&2 "picocom is not installed."; exit 1; }
 
     echo "---------------------------------"
-    echo "Exit picocom with ctrl + (a -> x)"
+    echo "Exit picocom with ctrl+a -> ctrl+x)"
     echo "---------------------------------"
 
     picocom --imap lfcrlf --omap crlf $pico_port
