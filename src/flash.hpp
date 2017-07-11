@@ -3,16 +3,16 @@
 
 #include <nbavr.hpp>
 
-template <class ledPin>
+template <class Nbavr, class ledPin>
 struct Flash : Task {
     Flash() {
-        ledPin::direction(ledPin::Direction::Output);
+        ledPin::direction(Direction::Output);
     }
 
-    void loop(Clock& clock) override {
+    void loop() override {
         ledPin::toggle();
 
-        delay(clock, MS_TO_TICKS(500));
+        sleep(Nbavr::getTicks() + Nbavr::millisToTicks(500));
     }
 };
 

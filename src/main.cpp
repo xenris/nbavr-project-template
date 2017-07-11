@@ -8,18 +8,24 @@ INCLUDE_USART_CALLBACK(0, RX);
 INCLUDE_USART_CALLBACK(0, DE);
 
 void main() {
+    const uint32_t CpuFreq = 16000000;
+
     typedef PinB5 ledPin;
     typedef TimerCounter1 systemTimer;
     typedef Usart0 serialUsart;
+
+    typedef Nbavr<systemTimer, CpuFreq> Nbavr;
+
+    Nbavr::init();
 
     StreamBuffer<char, 40> stdout;
     StreamBuffer<char, 0> stdin;
 
     Serial<serialUsart> serial(stdout, stdin);
-    Hello hello(stdout);
-    Flash<ledPin> flash;
+    Hello<Nbavr> hello(stdout);
+    Flash<Nbavr, ledPin> flash;
 
     Task* tasks[] = {&serial, &hello, &flash};
 
-    NBAVR<systemTimer> nbavr(tasks);
+    TaskManager<Nbavr> tm(tasks);
 }
