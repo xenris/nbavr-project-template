@@ -16,8 +16,6 @@ void main() {
 
     typedef Nbavr<systemTimer, CpuFreq> Nbavr;
 
-    Nbavr::init();
-
     StreamBuffer<char, 40> stdout;
     StreamBuffer<char, 0> stdin;
 
@@ -27,5 +25,5 @@ void main() {
 
     Task* tasks[] = {&serial, &hello, &flash};
 
-    TaskManager<Nbavr> tm(tasks);
+    Nbavr::run(tasks);
 }
