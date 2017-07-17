@@ -17,13 +17,13 @@ void main() {
     typedef Nbavr<systemTimer, CpuFreq> Nbavr;
 
     StreamBuffer<char, 40> stdout;
-    StreamBuffer<char, 0> stdin;
 
-    Serial<Nbavr, serialUsart> serial(stdout, stdin);
+    Serial<serialUsart>::init(CpuFreq, 9600, &stdout);
+
     Hello<Nbavr> hello(stdout);
     Flash<Nbavr, ledPin> flash;
 
-    Task<Nbavr>* tasks[] = {&serial, &hello, &flash};
+    Task<Nbavr>* tasks[] = {&hello, &flash};
 
     Nbavr::run(tasks);
 }
