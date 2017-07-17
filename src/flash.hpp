@@ -4,7 +4,7 @@
 #include <nbavr.hpp>
 
 template <class Nbavr, class ledPin>
-struct Flash : Task {
+struct Flash : Task<Nbavr> {
     Flash() {
         ledPin::direction(Direction::Output);
     }
@@ -12,7 +12,7 @@ struct Flash : Task {
     void loop() override {
         ledPin::toggle();
 
-        sleep(Nbavr::getTicks() + Nbavr::millisToTicks(500));
+        this->sleep(Nbavr::millisToTicks(500));
     }
 };
 

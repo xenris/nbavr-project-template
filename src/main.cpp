@@ -19,11 +19,11 @@ void main() {
     StreamBuffer<char, 40> stdout;
     StreamBuffer<char, 0> stdin;
 
-    Serial<serialUsart> serial(stdout, stdin);
+    Serial<Nbavr, serialUsart> serial(stdout, stdin);
     Hello<Nbavr> hello(stdout);
     Flash<Nbavr, ledPin> flash;
 
-    Task* tasks[] = {&serial, &hello, &flash};
+    Task<Nbavr>* tasks[] = {&serial, &hello, &flash};
 
     Nbavr::run(tasks);
 }

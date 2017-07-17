@@ -4,7 +4,7 @@
 #include <nbavr.hpp>
 
 template <class Nbavr>
-struct Hello : Task {
+struct Hello : Task<Nbavr> {
     Stream<char>& stdout;
     uint16_t count = 0;
 
@@ -16,7 +16,7 @@ struct Hello : Task {
 
         count++;
 
-        sleep(Nbavr::getTicks() + Nbavr::millisToTicks(1000));
+        this->sleep(Nbavr::millisToTicks(1000));
     }
 };
 
