@@ -57,9 +57,9 @@ for ((i = 0; i < ${#args}; i++)); do
             stty -F $serial_port 9600 -cstopb -parenb cs8 -echo -icanon raw
             stty -echo -icanon
 
-            cat < /dev/ttyUSB0 &
+            cat < $serial_port &
             P1=$!
-            cat > /dev/ttyUSB0
+            cat > $serial_port
 
             kill $P1
             wait $P1 2>/dev/null
