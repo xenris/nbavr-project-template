@@ -36,7 +36,12 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Uploading"
         echo "---------------------------------"
 
-        avrdude -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
+        if [ -a $upload_port ];
+        then
+            avrdude -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
+        else
+            echo "$upload_port does not exist"
+        fi
 
         ;;
     's')
@@ -44,24 +49,29 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Serial - Exit with ctrl+c"
         echo "---------------------------------"
 
-        set +e
-        trap ' ' INT
+        if [ -a $serial_port ];
+        then
+            set +e
+            trap ' ' INT
 
-        stty -F $serial_port 9600 -cstopb -parenb cs8 -echo -icanon raw
-        stty -echo -icanon
+            stty -F $serial_port 9600 -cstopb -parenb cs8 -echo -icanon raw
+            stty -echo -icanon
 
-        cat < /dev/ttyUSB0 &
-        P1=$!
-        cat > /dev/ttyUSB0
+            cat < /dev/ttyUSB0 &
+            P1=$!
+            cat > /dev/ttyUSB0
 
-        kill $P1
-        wait $P1 2>/dev/null
+            kill $P1
+            wait $P1 2>/dev/null
 
-        stty echo icanon
+            stty echo icanon
 
-        echo ''
+            echo ''
 
-        set -e
+            set -e
+        else
+            echo "$serial_port does not exist"
+        fi
 
         ;;
     'n')
