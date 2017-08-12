@@ -36,7 +36,7 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Uploading"
         echo "---------------------------------"
 
-        avrdude -p $mcu -P $port -c $programmer -e -U flash:w:$elf
+        avrdude -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
 
         ;;
     's')
