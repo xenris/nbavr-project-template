@@ -36,5 +36,5 @@ To update nbavr you can either delete the nbavr directory under lib/ and run bui
 
 ## Serial Communication
 
-Set the serial communication port "pico_port" in build.config.<br>
-"build.sh -p" will start picocom.
+Set the serial communication port "serial_port" in build.config.<br>
+"build.sh -t" will start serial communication.
