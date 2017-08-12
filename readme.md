@@ -17,12 +17,6 @@ This template is designed to work on Linux.
 * tup
 * git
 
-For simulator/debugger:
-
-* avr-gdb
-* simavr
-* kdbg
-
 ## Use
 
 1. Clone this repository with "git clone https://github.com/xenris/nbavr-project-template.git projectname" (where "projectname" is the name of your project).
