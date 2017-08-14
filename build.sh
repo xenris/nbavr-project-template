@@ -4,6 +4,16 @@ set -e
 
 source ./build.config
 
+if [ $avr_tools ]; then
+    if [ -d $avr_tools ]; then
+        PATH=$avr_tools/bin:$PATH
+        avrdudeconfig="-C $avr_tools/etc/avrdude.conf"
+    else
+        echo "$avr_tools not found"
+        exit 1
+    fi
+fi
+
 # Clone nbavr if it doesn't exist.
 if [ ! -d "lib/nbavr/" ]; then
     git clone https://github.com/xenris/nbavr.git lib/nbavr/
@@ -38,7 +48,7 @@ for ((i = 0; i < ${#args}; i++)); do
 
         if [ -a $upload_port ];
         then
-            avrdude -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
+            avrdude $avrdudeconfig -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
         else
             echo "$upload_port does not exist"
         fi
