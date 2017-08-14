@@ -48,7 +48,7 @@ for ((i = 0; i < ${#args}; i++)); do
 
         if [ -a $upload_port ];
         then
-            avrdude $avrdudeconfig -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
+            avrdude -b $upload_baud $avrdudeconfig -p $mcu -P $upload_port -c $programmer -e -U flash:w:$elf
         else
             echo "$upload_port does not exist"
         fi
