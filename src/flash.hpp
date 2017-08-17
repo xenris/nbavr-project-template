@@ -6,11 +6,15 @@
 template <class Clock, class ledPin>
 struct Flash : Task<Clock> {
     Flash() {
-        ledPin::direction(Direction::Output);
+        block {
+            ledPin::direction(Direction::Output);
+        }
     }
 
     void loop() override {
-        ledPin::toggle();
+        block {
+            ledPin::toggle();
+        }
 
         this->sleep(Clock::millisToTicks(500));
     }
