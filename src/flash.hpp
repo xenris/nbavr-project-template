@@ -3,8 +3,8 @@
 
 #include <nbavr.hpp>
 
-template <class Nbavr, class ledPin>
-struct Flash : Task<Nbavr> {
+template <class Clock, class ledPin>
+struct Flash : Task<Clock> {
     Flash() {
         ledPin::direction(Direction::Output);
     }
@@ -12,7 +12,7 @@ struct Flash : Task<Nbavr> {
     void loop() override {
         ledPin::toggle();
 
-        this->sleep(Nbavr::millisToTicks(500));
+        this->sleep(Clock::millisToTicks(500));
     }
 };
 

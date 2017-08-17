@@ -3,8 +3,8 @@
 
 #include <nbavr.hpp>
 
-template <class Nbavr>
-struct Hello : Task<Nbavr> {
+template <class Clock>
+struct Hello : Task<Clock> {
     Stream<char>& stdout;
     uint16_t count = 0;
 
@@ -16,7 +16,7 @@ struct Hello : Task<Nbavr> {
 
         count++;
 
-        this->sleep(Nbavr::millisToTicks(1000));
+        this->sleep(Clock::millisToTicks(1000));
     }
 };
 

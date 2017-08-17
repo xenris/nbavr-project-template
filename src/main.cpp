@@ -14,16 +14,18 @@ void main() {
     typedef TimerCounter1 systemTimer;
     typedef Usart0 serialUsart;
 
-    typedef Nbavr<systemTimer, CpuFreq> Nbavr;
+    typedef Clock<systemTimer, CpuFreq> Clock;
+
+    Clock::init();
 
     StreamBuffer<char, 40> stdout;
 
     Serial<serialUsart>::init(CpuFreq, 9600, &stdout);
 
-    Hello<Nbavr> hello(stdout);
-    Flash<Nbavr, ledPin> flash;
+    Hello<Clock> hello(stdout);
+    Flash<Clock, ledPin> flash;
 
-    Task<Nbavr>* tasks[] = {&hello, &flash};
+    Task<Clock>* tasks[] = {&hello, &flash};
 
-    Nbavr::run(tasks);
+    TaskManager<Clock> tm(tasks);
 }
