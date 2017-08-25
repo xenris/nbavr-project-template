@@ -18,11 +18,11 @@ void main() {
 
     Clock::init();
 
-    StreamBuffer<char, 40> stdout;
+    StreamBuffer<char, 40> cout;
 
-    Serial<serialUsart>::init(CpuFreq, 9600, &stdout);
+    Serial<serialUsart>::init(CpuFreq, 9600, &cout);
 
-    Hello<Clock> hello(stdout);
+    Hello<Clock> hello(cout);
     Flash<Clock, ledPin> flash;
 
     Task<Clock>* tasks[] = {&hello, &flash};

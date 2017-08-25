@@ -5,14 +5,14 @@
 
 template <class Clock>
 struct Hello : Task<Clock> {
-    Stream<char>& stdout;
+    Stream<char>& cout;
     uint16_t count = 0;
 
-    Hello(Stream<char>& stdout) : stdout(stdout) {
+    Hello(Stream<char>& cout) : cout(cout) {
     }
 
     void loop() override {
-        stdout << "hello! (" << count << ')' << endl;
+        cout << "hello! (" << count << ')' << endl;
 
         count++;
 
