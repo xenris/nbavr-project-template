@@ -22,7 +22,6 @@ To simplify things I've built Tup and all the AVR tools (latest versions as of 1
 ## Use
 
 1. Clone this repository with "git clone https://github.com/xenris/nbavr-project-template.git project-name".
-1. Create the master branch for your project with "git checkout -b master".
 1. If you downloaded avr-tools, unzip it to a convenient location.
 1. Look in build.config for configuration options.
 1. Run "./build.sh" to see options, including building and uploading. (nbavr will be downloaded on first run.)
@@ -30,20 +29,6 @@ To simplify things I've built Tup and all the AVR tools (latest versions as of 1
 1. Explore the source code.
 1. Explore the documentation of [nbavr](https://github.com/xenris/nbavr/blob/master/docs/index.md).
 1. Explore this example project: [8x8 LED Matrix Display](https://github.com/xenris/led-matrix-display)
-
-### Updating nbavr
-
-1. "./build.sh n"
-
-### Updating nbavr-project-template
-
-1. "git fetch"
-1. "git merge nbavr-project-template"
-1. If any conflicts occur:
-    1. "git status" to see where they are.
-    1. Go through the conflicts, applying your own changes to the updates.
-    1. "git add \[file\]"
-    1. "git commit"
 
 ## License
 
