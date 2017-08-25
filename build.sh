@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Copyright (c) 2017 Henry Shepperd
+
+# MIT License (https://opensource.org/licenses/MIT)
+
 set -e
 
 source ./build.config

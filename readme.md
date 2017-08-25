@@ -1,10 +1,8 @@
-# [nbavr](https://github.com/xenris/nbavr) project template
-
-This is a template for creating 8-bit Atmel AVR projects using the [nbavr](https://github.com/xenris/nbavr) library.
+# nbavr project template
 
 ## About
 
-[nbavr](https://github.com/xenris/nbavr) is a c++ library for 8-bit Atmel AVR microprocessors (such as those found on Arduinos).
+This is a template for creating projects for 8-bit AVR microcontrollers using the [nbavr](https://github.com/xenris/nbavr) library.
 
 ## Requirements
 
@@ -46,3 +44,10 @@ To simplify things I've built Tup and all the AVR tools (latest versions as of 1
     1. Go through the conflicts, applying your own changes to the updates.
     1. "git add \[file\]"
     1. "git commit"
+
+## License
+
+Only build.sh has a license, the MIT license. All other files in this project
+are merely templates. They belong to me (Henry Shepperd) while they are a part
+of nbavr-project-template, and belong to you as soon as you modify or add to
+them as part of your own project.
