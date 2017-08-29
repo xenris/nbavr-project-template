@@ -3,12 +3,12 @@
 
 #include <nbavr.hpp>
 
-template <class Clock>
+template <class Clock, class cout_t>
 struct Hello : Task<Clock> {
-    Stream<char>& cout;
+    cout_t& cout;
     uint16_t count = 0;
 
-    Hello(Stream<char>& cout) : cout(cout) {
+    Hello(cout_t& cout) : cout(cout) {
     }
 
     void loop() override {

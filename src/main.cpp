@@ -13,16 +13,17 @@ void main() {
     typedef PinB5 ledPin;
     typedef TimerCounter1 systemTimer;
     typedef Usart0 serialUsart;
+    typedef Queue<char, 40> cout_t;
 
     typedef Clock<systemTimer, CpuFreq> Clock;
 
     Clock::init();
 
-    StreamBuffer<char, 40> cout;
+    cout_t cout;
 
-    Serial<serialUsart>::init(CpuFreq, 9600, &cout);
+    Serial<serialUsart, cout_t>::init(CpuFreq, 9600, &cout);
 
-    Hello<Clock> hello(cout);
+    Hello<Clock, cout_t> hello(cout);
     Flash<Clock, ledPin> flash;
 
     Task<Clock>* tasks[] = {&hello, &flash};
