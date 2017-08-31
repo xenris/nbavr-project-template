@@ -21,7 +21,7 @@ void main() {
 
     cout_t cout;
 
-    Serial<serialUsart, cout_t>::init(CpuFreq, 9600, &cout);
+    Serial<serialUsart, cout_t>::init(CpuFreq, 115200, &cout);
 
     Hello<Clock, cout_t> hello(cout);
     Flash<Clock, ledPin> flash;

@@ -69,7 +69,7 @@ for ((i = 0; i < ${#args}; i++)); do
             set +e
             trap ' ' INT
 
-            stty -F $serial_port 9600 -cstopb -parenb cs8 -echo -icanon raw
+            stty -F $serial_port $serial_baud -cstopb -parenb cs8 -echo -icanon raw
             stty -echo -icanon
 
             exec 3<> $serial_port
