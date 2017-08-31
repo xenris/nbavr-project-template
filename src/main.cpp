@@ -17,8 +17,6 @@ void main() {
 
     typedef Clock<systemTimer, CpuFreq> Clock;
 
-    Clock::init();
-
     cout_t cout;
 
     Serial<serialUsart, cout_t>::init(CpuFreq, 115200, &cout);
