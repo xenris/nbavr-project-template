@@ -17,7 +17,7 @@ CFLAGS += -Wextra
 CFLAGS += -Werror
 CFLAGS += -ffunction-sections
 CFLAGS += -g
-CFLAGS += -std=c++14
+CFLAGS += -std=c++17
 CFLAGS += -Os
 CFLAGS += -mmcu=$(MMCU)
 CFLAGS += -DF_CPU=$(FREQ)
