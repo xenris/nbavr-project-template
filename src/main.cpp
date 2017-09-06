@@ -10,19 +10,19 @@ INCLUDE_USART_CALLBACK(0, DE);
 void main() {
     const uint32_t CpuFreq = 16000000;
 
-    using ledPin = PinB5;
-    using systemTimer = TimerCounter1;
-    using serialUsart = Usart0;
+    using LedPin = PinB5;
+    using SystemTimer = TimerCounter1;
+    using SerialUsart = Usart0;
     using cout_t = Queue<char, 40>;
 
-    using Clock = Clock<systemTimer, CpuFreq>;
+    using Clock = Clock<SystemTimer, CpuFreq>;
 
     cout_t cout;
 
-    Serial<serialUsart, cout_t>::init(CpuFreq, 115200, &cout);
+    Serial<SerialUsart, cout_t>::init(CpuFreq, 115200, &cout);
 
     Hello<Clock, cout_t> hello(cout);
-    Flash<Clock, ledPin> flash;
+    Flash<Clock, LedPin> flash;
 
     Task<Clock>* tasks[] = {&hello, &flash};
 

@@ -3,17 +3,17 @@
 
 #include <nbavr.hpp>
 
-template <class Clock, class ledPin>
+template <class Clock, class LedPin>
 struct Flash : Task<Clock> {
     Flash() {
         block {
-            ledPin::direction(Direction::Output);
+            LedPin::direction(Direction::Output);
         }
     }
 
     void loop() override {
         block {
-            ledPin::toggle();
+            LedPin::toggle();
         }
 
         this->sleep(Clock::millisToTicks(500));
