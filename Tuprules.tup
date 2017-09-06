@@ -20,7 +20,6 @@ CFLAGS += -g
 CFLAGS += -std=c++17
 CFLAGS += -Os
 CFLAGS += -mmcu=$(MMCU)
-CFLAGS += -DF_CPU=$(FREQ)
 CFLAGS += -Wl,-gc-sections
 CFLAGS += -fdiagnostics-color=always
 CFLAGS += -Wno-unused-parameter
