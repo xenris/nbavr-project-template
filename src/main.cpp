@@ -10,12 +10,12 @@ INCLUDE_USART_CALLBACK(0, DE);
 void main() {
     const uint32_t CpuFreq = 16000000;
 
-    typedef PinB5 ledPin;
-    typedef TimerCounter1 systemTimer;
-    typedef Usart0 serialUsart;
-    typedef Queue<char, 40> cout_t;
+    using ledPin = PinB5;
+    using systemTimer = TimerCounter1;
+    using serialUsart = Usart0;
+    using cout_t = Queue<char, 40>;
 
-    typedef Clock<systemTimer, CpuFreq> Clock;
+    using Clock = Clock<systemTimer, CpuFreq>;
 
     cout_t cout;
 
