@@ -4,7 +4,7 @@
 #include <nbavr.hpp>
 
 template <class Clock, class cout_t>
-struct Hello : Task<Clock> {
+struct Hello : nbavr::Task<Clock> {
     cout_t& cout;
     uint16_t count = 0;
 
@@ -12,7 +12,7 @@ struct Hello : Task<Clock> {
     }
 
     void loop() override {
-        cout << "hello! (" << count << ')' << endl;
+        cout << "hello! (" << count << ")\n";
 
         count++;
 

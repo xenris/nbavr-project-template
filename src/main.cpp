@@ -10,21 +10,21 @@ INCLUDE_USART_CALLBACK(0, DE);
 void main() {
     const uint32_t CpuFreq = 16000000;
 
-    using LedPin = PinB5;
-    using SystemTimer = TimerCounter1;
-    using SerialUsart = Usart0;
-    using cout_t = Queue<char, 40>;
+    using LedPin = nbavr::PinB5;
+    using SystemTimer = nbavr::TimerCounter1;
+    using SerialUsart = nbavr::Usart0;
+    using cout_t = nbavr::Queue<char, 40>;
 
-    using Clock = Clock<SystemTimer, CpuFreq>;
+    using Clock = nbavr::Clock<SystemTimer, CpuFreq>;
 
     cout_t cout;
 
-    Serial<SerialUsart, cout_t>::init(CpuFreq, 115200, &cout);
+    nbavr::Serial<SerialUsart, cout_t>::init(CpuFreq, 115200, &cout);
 
     Hello<Clock, cout_t> hello(cout);
     Flash<Clock, LedPin> flash;
 
-    Task<Clock>* tasks[] = {&hello, &flash};
+    nbavr::Task<Clock>* tasks[] = {&hello, &flash};
 
-    TaskManager<Clock> tm(tasks);
+    nbavr::TaskManager<Clock> tm(tasks);
 }

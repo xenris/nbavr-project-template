@@ -4,10 +4,10 @@
 #include <nbavr.hpp>
 
 template <class Clock, class LedPin>
-struct Flash : Task<Clock> {
+struct Flash : nbavr::Task<Clock> {
     Flash() {
         block {
-            LedPin::direction(Direction::Output);
+            LedPin::direction(nbavr::Direction::Output);
         }
     }
 
