@@ -6,7 +6,7 @@
 template <class Clock, class LedPin>
 struct Flash : nbavr::Task<Clock> {
     Flash() {
-        LedPin::direction(nbavr::Direction::Output);
+        LedPin::direction(nbavr::hw::Direction::Output);
     }
 
     void loop() override {

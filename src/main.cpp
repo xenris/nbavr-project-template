@@ -10,9 +10,9 @@ INCLUDE_USART_CALLBACK(0, DE);
 void main() {
     const uint32_t CpuFreq = 16000000;
 
-    using LedPin = nbavr::PinB5;
-    using SystemTimer = nbavr::TimerCounter1;
-    using SerialUsart = nbavr::Usart0;
+    using LedPin = nbavr::hw::PinB5;
+    using SystemTimer = nbavr::hw::TimerCounter1;
+    using SerialUsart = nbavr::hw::Usart0;
     using cout_t = nbavr::Queue<char, 40>;
 
     using Clock = nbavr::Clock<SystemTimer, CpuFreq>;
