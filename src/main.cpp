@@ -17,14 +17,14 @@ void main() {
 
     using Clock = nbavr::Clock<SystemTimer, CpuFreq>;
 
-    cout_t cout;
+    static cout_t cout;
 
     nbavr::Serial<SerialUsart, cout_t>::init(CpuFreq, 115200, &cout);
 
-    Hello<Clock, cout_t> hello(cout);
-    Flash<Clock, LedPin> flash;
+    static Hello<Clock, cout_t> hello(cout);
+    static Flash<Clock, LedPin> flash;
 
-    nbavr::Task<Clock>* tasks[] = {&hello, &flash};
+    static nbavr::Task<Clock>* tasks[] = {&hello, &flash};
 
     nbavr::TaskManager<Clock> tm(tasks);
 }
