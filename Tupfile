@@ -2,11 +2,17 @@
 
 include_rules
 
-# Compile source to elf.
-: src/main.cpp |> $(CC) $(CFLAGS) -o %o %f |> gen/firmware.elf
+# Compile source.
+: foreach $(SRC_FILES) |> $(compiler)-gcc $(CFLAGS_%e) $(CFLAGS) -c %f -o %o |> obj/%f.o {objs}
+
+# Link objects.
+: {objs} |> $(compiler)-gcc $(CFLAGS) -o %o %f |> gen/firmware.elf {elf}
+
+# Copy to binary.
+: {elf} |> $(compiler)-objcopy -O binary %f %o |> gen/firmware.bin {bin}
 
 # Copy to hex.
-: gen/firmware.elf |> $(OBJCOPY) -O ihex %f %o |> gen/%B.hex
+: {elf} |> $(compiler)-objcopy -O ihex %f %o |> gen/firmware.hex {hex}
 
 # Decompile elf to asm, for debugging.
-: gen/firmware.elf |> $(OBJDUMP) -S --architecture=avr --disassemble %f > %o |> gen/%B.asm
+: {elf} |> $(compiler)-objdump -S --architecture=$(arch) --disassemble %f > %o |> gen/%B.asm

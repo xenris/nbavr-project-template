@@ -8,6 +8,14 @@ set -e
 
 source ./build.config
 
+if [[ "$mcu" =~ ^at.* ]]; then
+    arch="avr"
+    mmcu=$mcu
+elif [[ "$mcu" =~ ^stm32f1.* ]]; then
+    arch="arm"
+    mmcu="cortex-m3"
+fi
+
 if [ $avr_tools ]; then
     if [ -d $avr_tools ]; then
         PATH=$avr_tools/bin:$PATH
@@ -25,7 +33,7 @@ if [[ $(git submodule status lib/nbavr) =~ ^-.* ]]; then
 fi
 
 elf="gen/firmware.elf"
-hex="gen/firmware.hex"
+bin="gen/firmware.bin"
 
 # Iterate through args.
 args=$*
@@ -38,13 +46,34 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Building"
         echo "---------------------------------"
 
+        PATHS=$(find src/ -name '*.c' -o -name '*.cpp' -o -name '*.S')
+
+        rm -f Tupresources
+
+        echo "arch = $arch" >> Tupresources
+        echo "mmcu = $mmcu" >> Tupresources
+        echo "CFLAGS += -D__${mcu}__" >> Tupresources
+
+        for p in $PATHS; do
+            echo "SRC_FILES += $p" >> Tupresources
+        done
+
         tup
 
         ;;
     'm')
         echo "---------------------------------"
 
-        avr-size $elf -C --mcu=$mcu
+        case $arch in
+        "avr")
+            avr-size $elf -C --mcu=$mmcu
+
+            ;;
+        "arm")
+            arm-none-eabi-size $elf
+
+            ;;
+        esac
 
         ;;
     'u')
@@ -52,12 +81,20 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Uploading"
         echo "---------------------------------"
 
-        if [ -a $upload_port ];
-        then
-            avrdude -b $upload_baud $avrdudeconfig -p $mcu -P $upload_port -c $programmer -e -U flash:w:$hex
-        else
-            echo "$upload_port does not exist"
-        fi
+        case $arch in
+        "avr")
+            if [ -a $upload_port ]; then
+                avrdude -b $upload_baud $avrdudeconfig -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$elf:e
+            else
+                echo "$upload_port does not exist"
+            fi
+
+            ;;
+        "arm")
+            st-flash --reset write $bin 0x08000000
+
+            ;;
+        esac
 
         ;;
     's')
@@ -65,8 +102,7 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Serial - Exit with ctrl+c"
         echo "---------------------------------"
 
-        if [ -a $serial_port ];
-        then
+        if [ -a $serial_port ]; then
             set +e
             trap ' ' INT
 
@@ -106,8 +142,7 @@ for ((i = 0; i < ${#args}; i++)); do
     esac
 done
 
-if [ "$#" -eq "0" ]
-then
+if [ "$#" == "0" ]; then
     echo "b -> Build"
     echo "m -> Show memory usage"
     echo "u -> Upload"
