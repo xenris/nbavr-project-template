@@ -8,6 +8,10 @@ set -e
 
 source ./build.config
 
+if [ ! -d ".tup" ]; then
+    tup init
+fi
+
 if [[ "$mcu" =~ ^at.* ]]; then
     arch="avr"
     mmcu=$mcu
