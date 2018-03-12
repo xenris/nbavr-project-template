@@ -17,8 +17,6 @@ void main() {
 
     using Clock = nbavr::Clock<SystemTimer, CpuFreq>;
 
-    using TT = Clock::Timer;
-
     static cout_t cout;
 
     nbavr::Serial<SerialUsart, cout_t>::init(CpuFreq, 115200, &cout);
