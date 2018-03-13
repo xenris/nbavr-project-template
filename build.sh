@@ -30,10 +30,10 @@ if [ $avr_tools ]; then
     fi
 fi
 
-# Make sure nbavr is initialised.
-if [[ $(git submodule status lib/nbavr) =~ ^-.* ]]; then
-    git submodule init lib/nbavr
-    git submodule update lib/nbavr
+# Make sure nbos is initialised.
+if [[ $(git submodule status lib/nbos) =~ ^-.* ]]; then
+    git submodule init lib/nbos
+    git submodule update lib/nbos
 fi
 
 elf="gen/firmware.elf"
@@ -133,10 +133,10 @@ for ((i = 0; i < ${#args}; i++)); do
         ;;
     'n')
         echo "---------------------------------"
-        echo "Updating nbavr"
+        echo "Updating nbos"
         echo "---------------------------------"
 
-        git submodule update --remote lib/nbavr
+        git submodule update --remote lib/nbos
 
         ;;
     ' ')
@@ -151,7 +151,7 @@ if [ "$#" == "0" ]; then
     echo "m -> Show memory usage"
     echo "u -> Upload"
     echo "s -> Serial communication"
-    echo "n -> Update nbavr"
+    echo "n -> Update nbos"
     echo ""
     echo "e.g. ./build.sh bmus"
 fi

@@ -19,7 +19,7 @@ ifeq ($(compiler),)
     error "compiler" not defined. "mcu" is probably not valid.
 endif
 
-CFLAGS += -I$(TUP_CWD)/lib/nbavr/src/
+CFLAGS += -I$(TUP_CWD)/lib/nbos/src/
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror

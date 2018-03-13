@@ -1,10 +1,10 @@
 #ifndef HELLO_HPP
 #define HELLO_HPP
 
-#include <nbavr.hpp>
+#include <nbos.hpp>
 
 template <class Clock, class cout_t>
-struct Hello : nbavr::Task<Clock> {
+struct Hello : nbos::Task<Clock> {
     cout_t& cout;
     uint16_t count = 0;
 
