@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# build.sh - 1
+# build.sh - 2
 
 # Copyright (c) 2017 Henry Shepperd
 
@@ -37,6 +37,12 @@ if [[ $(git submodule status lib/nbos) =~ ^-.* ]]; then
     git submodule init lib/nbos
     git submodule update lib/nbos
 fi
+
+echo "-I./lib/nbos/src" > .clang_complete
+echo "-ffreestanding" >> .clang_complete
+echo "-Dexternally_visible=used" >> .clang_complete
+echo "-Dsignal=used" >> .clang_complete
+echo "-D__${mcu}__" >> .clang_complete
 
 elf="gen/firmware.elf"
 hex="gen/firmware.elf"
