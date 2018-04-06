@@ -1,4 +1,4 @@
-# Tuprules
+# Tuprules.tup - 1
 
 PROJECT_TOP = $(TUP_CWD)
 

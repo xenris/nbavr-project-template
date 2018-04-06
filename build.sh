@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# build.sh - 1
+
 # Copyright (c) 2017 Henry Shepperd
 
 # MIT License (https://opensource.org/licenses/MIT)
@@ -37,6 +39,7 @@ if [[ $(git submodule status lib/nbos) =~ ^-.* ]]; then
 fi
 
 elf="gen/firmware.elf"
+hex="gen/firmware.elf"
 bin="gen/firmware.bin"
 
 # Iterate through args.
