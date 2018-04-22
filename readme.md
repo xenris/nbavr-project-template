@@ -22,10 +22,10 @@ To simplify things I've built Tup and all the AVR tools (latest versions as of 1
 ## Use
 
 1. Clone this repository with "git clone https://github.com/xenris/nbos-project-template.git project-name".
-1. Delete .git directory.
 1. If you downloaded avr-tools, unzip it to a convenient location.
 1. Look in build.config for configuration options.
 1. Run "./build.sh" to see options, including building and uploading. (nbos will be downloaded on first run.)
+1. Delete .git directory.
 1. Replace the contents of this readme with your own.
 1. Explore the source code.
 1. Explore the documentation of [nbos](https://github.com/xenris/nbos/blob/master/docs/index.md).
