@@ -96,11 +96,7 @@ for ((i = 0; i < ${#args}; i++)); do
 
         case $arch in
         "avr")
-            if [ -a $upload_port ]; then
-                avrdude -b $upload_baud $avrdudeconfig -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
-            else
-                echo "$upload_port does not exist"
-            fi
+            avrdude -b $upload_baud $avrdudeconfig -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
 
             ;;
         "arm")
