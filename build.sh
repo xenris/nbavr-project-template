@@ -45,7 +45,7 @@ echo "-Dsignal=used" >> .clang_complete
 echo "-D__${mcu}__" >> .clang_complete
 
 elf="gen/firmware.elf"
-hex="gen/firmware.elf"
+hex="gen/firmware.hex"
 bin="gen/firmware.bin"
 
 # Iterate through args.
@@ -97,7 +97,7 @@ for ((i = 0; i < ${#args}; i++)); do
         case $arch in
         "avr")
             if [ -a $upload_port ]; then
-                avrdude -b $upload_baud $avrdudeconfig -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$elf:e
+                avrdude -b $upload_baud $avrdudeconfig -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
             else
                 echo "$upload_port does not exist"
             fi
