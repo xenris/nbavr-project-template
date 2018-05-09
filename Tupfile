@@ -15,4 +15,4 @@ include_rules
 : {elf} |> $(compiler)-objcopy -O ihex %f %o |> gen/firmware.hex {hex}
 
 # Decompile elf to asm, for debugging.
-: {elf} |> $(compiler)-objdump -S --architecture=$(arch) --disassemble %f > %o |> gen/%B.asm
+: {elf} |> $(compiler)-objdump -S --architecture=$(arch) -z --disassemble %f > %o |> gen/%B.asm
