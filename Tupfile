@@ -2,8 +2,11 @@
 
 include_rules
 
-# Compile source.
-: foreach $(SRC_FILES) |> $(compiler)-gcc $(CFLAGS_%e) $(CFLAGS) -c %f -o %o |> obj/%f.o {objs}
+# Generate preprocessed files, for debugging.
+: foreach $(SRC_FILES) |> $(compiler)-cpp $(CFLAGS_%e) $(CFLAGS) %f > %o |> gen/%f {pp}
+
+# Compile preprocessed source.
+: foreach {pp} |> $(compiler)-gcc $(CFLAGS_%e) $(CFLAGS) -c %f -o %o |> obj/%f.o {objs}
 
 # Link objects.
 : {objs} |> $(compiler)-gcc $(CFLAGS) -o %o %f |> gen/firmware.elf {elf}

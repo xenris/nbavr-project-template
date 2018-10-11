@@ -35,6 +35,7 @@ CFLAGS += -flto
 CFLAGS += -ffreestanding
 CFLAGS += -fmax-errors=3
 CFLAGS += -Wl,-gc-sections
+CFLAGS += -Wl,--allow-multiple-definition
 
 CFLAGS_c += -std=c11
 

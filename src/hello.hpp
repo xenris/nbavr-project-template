@@ -3,12 +3,12 @@
 
 #include <nbos.hpp>
 
-template <class Clock, class cout_t>
+template <class Clock>
 struct Hello : nbos::Task<Clock> {
-    cout_t& cout;
+    nbos::Atomic<nbos::Queue<char>>& cout;
     uint16_t count = 0;
 
-    Hello(cout_t& cout) : cout(cout) {
+    Hello(nbos::Atomic<nbos::Queue<char>>& cout) : cout(cout) {
     }
 
     void loop() override {
