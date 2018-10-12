@@ -28,7 +28,7 @@ To simplify things I've built Tup and all the AVR tools (latest versions as of 1
 1. Delete .git directory.
 1. Replace the contents of this readme with your own.
 1. Explore the source code.
-1. Explore the documentation of [nbos](https://github.com/xenris/nbos/blob/master/docs/index.md).
+1. Explore the documentation of [nbos](https://github.com/xenris/nbos/blob/master/docs/index.hpp.md).
 1. Explore this example project: [8x8 LED Matrix Display](https://github.com/xenris/led-matrix-display)
 
 ## License
