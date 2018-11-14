@@ -5,10 +5,10 @@
 
 template <class Clock>
 struct Hello : nbos::Task<Clock> {
-    nbos::Atomic<nbos::Queue<char>>& cout;
-    uint16_t count = 0;
+    nbos::Atomic<nbos::Queue<Char>&> cout;
+    Int16 count;
 
-    Hello(nbos::Atomic<nbos::Queue<char>>& cout) : cout(cout) {
+    Hello(nbos::Queue<Char>& cout) : cout(cout) {
     }
 
     void loop() override {
