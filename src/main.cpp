@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 void main() {
-    const Integer CpuFreq = 16000000;
+    const uint64_t CpuFreq = 16000000;
 
     using SystemTimer = nbos::hw::Timer1;
     using SerialUsart = nbos::hw::Usart0;
@@ -9,7 +9,7 @@ void main() {
 
     using Clock = nbos::Clock<SystemTimer, CpuFreq>;
 
-    static nbos::Queue<Char, 40> cout;
+    static nbos::Queue<char, 40> cout;
 
     nbos::Serial<SerialUsart>::init(CpuFreq, 115200, &cout);
 
