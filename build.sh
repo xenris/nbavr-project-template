@@ -24,7 +24,9 @@ if [ ! -d ".tup" ]; then
 fi
 
 # Initialise git and submodule nblib.
+# (For new projects.)
 if [ ! -d ".git" ]; then
+    rmdir --ignore-fail-on-non-empty lib/nblib/
     if [ -d "lib/nblib" ]; then
         mv lib/nblib lib/nblib.bck
         echo "!!!!!!!!!!!!!!!!!! lib/nblib/ renamed to lib/nblib.bck/       !!!!!!!!!!!!!!!!!!"
@@ -35,12 +37,14 @@ if [ ! -d ".git" ]; then
 fi
 
 # Make sure nblib is initialised.
+# (For cloned projects.)
 if [[ $(git submodule status "lib/nblib") =~ ^-.* ]]; then
     git submodule init lib/nblib
 fi
 
 # Make sure nblib is populated.
-if [[ (! -d "lib/nblib") || ($(ls "lib/nblib" -1 | wc -l) -eq 0) ]]; then
+# (For cloned projects.)
+if [ ! -d "lib/nblib/src" ]; then
     git submodule update lib/nblib
 fi
 
