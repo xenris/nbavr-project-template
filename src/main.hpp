@@ -3,7 +3,4 @@
 
 #include <nbos.hpp>
 
-#include "hello.hpp"
-#include "flash.hpp"
-
 #endif

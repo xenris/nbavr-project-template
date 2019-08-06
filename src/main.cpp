@@ -3,20 +3,25 @@
 void main() {
     const uint64_t CpuFreq = 16000000;
 
-    using SystemTimer = nbos::hw::Timer1;
-    using SerialUsart = nbos::hw::Usart0;
+    using Timer = nbos::hw::Timer1;
     using LedPin = nbos::hw::PortB::Pin5;
+    using Sleep = nbos::hw::Sleep;
 
-    using Clock = nbos::Clock<SystemTimer, CpuFreq>;
+    Timer::waveform(Timer::Waveform::ctcOcra);
+    Timer::OutputA::intEnable(true);
+    Timer::OutputA::value(CpuFreq / (256 * 2));
+    Timer::clock(Timer::Clock::div256);
 
-    static nbos::Queue<char, 40> cout;
+    LedPin::mode(LedPin::Mode::output);
 
-    nbos::Serial<SerialUsart>::init(CpuFreq, 115200, &cout);
+    Sleep::mode(Sleep::Mode::idle);
+    Sleep::enable(true);
 
-    static Hello<Clock> hello(cout);
-    static Flash<Clock, LedPin> flash;
+    nbos::interruptsEnable(true);
 
-    static nbos::Task<Clock>* tasks[] = {&hello, &flash};
+    while(true) {
+        Sleep::sleep();
 
-    nbos::TaskManager<Clock> tm(tasks);
+        LedPin::toggle();
+    }
 }
