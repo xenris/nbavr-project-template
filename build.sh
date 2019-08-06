@@ -18,16 +18,6 @@ elif [[ "$mcu" =~ ^stm32f1.* ]]; then
     mmcu="cortex-m3"
 fi
 
-if [ $avr_tools ]; then
-    if [ -d $avr_tools ]; then
-        PATH=$avr_tools/bin:$PATH
-        avrdudeconfig="-C $avr_tools/etc/avrdude.conf"
-    else
-        echo "$avr_tools not found"
-        exit 1
-    fi
-fi
-
 if [ ! -d ".tup" ]; then
     tup init
 fi
