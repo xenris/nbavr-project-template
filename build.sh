@@ -33,8 +33,12 @@ if [ ! -d ".tup" ]; then
 fi
 
 # Make sure nblib is initialised.
-if [[ $(git submodule status lib/nblib) =~ ^-.* ]]; then
+if [[ $(git submodule status "lib/nblib") =~ ^-.* ]]; then
     git submodule init lib/nblib
+fi
+
+# Make sure nblib is populated.
+if [[ (! -d "lib/nblib") || ($(ls "lib/nblib" -1 | wc -l) -eq 0) ]]; then
     git submodule update lib/nblib
 fi
 
