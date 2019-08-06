@@ -18,9 +18,9 @@ This is a template for creating projects for 8-bit AVR microcontrollers using th
 ## Use
 
 1. Clone this repository with "git clone https://github.com/xenris/nblib-project-template.git project-name".
+1. Delete the .git/ directory.
 1. Look in build.config for configuration options.
-1. Run "./build.sh" to see options, including building and uploading. (nblib will be downloaded on first run.)
-1. Delete the .git directory.
+1. Run "./build.sh" to initialise the project and see options including building and uploading.
 1. Explore the source code.
 1. Explore the documentation of [nblib](https://github.com/xenris/nblib/blob/master/docs/index.hpp.md).
 1. Explore this example project: [8x8 LED Matrix Display](https://github.com/xenris/led-matrix-display)

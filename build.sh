@@ -18,8 +18,20 @@ elif [[ "$mcu" =~ ^stm32f1.* ]]; then
     mmcu="cortex-m3"
 fi
 
+# Initialise tup.
 if [ ! -d ".tup" ]; then
     tup init
+fi
+
+# Initialise git and submodule nblib.
+if [ ! -d ".git" ]; then
+    if [ -d "lib/nblib" ]; then
+        mv lib/nblib lib/nblib.bck
+        echo "!!!!!!!!!!!!!!!!!! lib/nblib/ renamed to lib/nblib.bck/       !!!!!!!!!!!!!!!!!!"
+        echo "!!!!!!!!!!!!!!!!!! Delete lib/nblib.bck/ if you don't need it !!!!!!!!!!!!!!!!!!"
+    fi
+    git init
+    git submodule add https://github.com/xenris/nblib.git lib/nblib
 fi
 
 # Make sure nblib is initialised.
