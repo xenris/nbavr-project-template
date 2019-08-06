@@ -32,13 +32,13 @@ if [ ! -d ".tup" ]; then
     tup init
 fi
 
-# Make sure nbos is initialised.
-if [[ $(git submodule status lib/nbos) =~ ^-.* ]]; then
-    git submodule init lib/nbos
-    git submodule update lib/nbos
+# Make sure nblib is initialised.
+if [[ $(git submodule status lib/nblib) =~ ^-.* ]]; then
+    git submodule init lib/nblib
+    git submodule update lib/nblib
 fi
 
-echo "-I./lib/nbos/src" > .clang_complete
+echo "-I./lib/nblib/src" > .clang_complete
 echo "-ffreestanding" >> .clang_complete
 echo "-Dexternally_visible=used" >> .clang_complete
 echo "-Dsignal=used" >> .clang_complete
@@ -138,10 +138,10 @@ for ((i = 0; i < ${#args}; i++)); do
         ;;
     'n')
         echo "---------------------------------"
-        echo "Updating nbos"
+        echo "Updating nblib"
         echo "---------------------------------"
 
-        git submodule update --remote lib/nbos
+        git submodule update --remote lib/nblib
 
         ;;
     ' ')
@@ -156,7 +156,7 @@ if [ "$#" == "0" ]; then
     echo "m -> Show memory usage"
     echo "u -> Upload"
     echo "s -> Serial communication"
-    echo "n -> Update nbos"
+    echo "n -> Update nblib"
     echo ""
     echo "e.g. ./build.sh bmus"
 fi

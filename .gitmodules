@@ -1,3 +1,0 @@
-[submodule "lib/nbos"]
-	path = lib/nbos
-	url = https://github.com/xenris/nbos.git

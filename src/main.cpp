@@ -3,9 +3,9 @@
 void main() {
     const uint64_t CpuFreq = 16000000;
 
-    using Timer = nbos::hw::Timer1;
-    using LedPin = nbos::hw::PortB::Pin5;
-    using Sleep = nbos::hw::Sleep;
+    using Timer = nblib::hw::Timer1;
+    using LedPin = nblib::hw::PortB::Pin5;
+    using Sleep = nblib::hw::Sleep;
 
     Timer::waveform(Timer::Waveform::ctcOcra);
     Timer::OutputA::intEnable(true);
@@ -17,7 +17,7 @@ void main() {
     Sleep::mode(Sleep::Mode::idle);
     Sleep::enable(true);
 
-    nbos::interruptsEnable(true);
+    nblib::interruptsEnable(true);
 
     while(true) {
         Sleep::sleep();
