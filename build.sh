@@ -19,15 +19,15 @@ elif [[ "$mcu" =~ ^stm32f1.* ]]; then
 fi
 
 # Initialise tup.
-if [ ! -d ".tup" ]; then
+if [[ ! -d ".tup" ]]; then
     tup init
 fi
 
 # Initialise git and submodule nblib.
 # (For new projects.)
-if [ ! -d ".git" ]; then
+if [[ ! -d ".git" ]]; then
     rmdir --ignore-fail-on-non-empty lib/nblib/
-    if [ -d "lib/nblib" ]; then
+    if [[ -d "lib/nblib" ]]; then
         mv lib/nblib lib/nblib.bck
         echo "!!!!!!!!!!!!!!!!!! lib/nblib/ renamed to lib/nblib.bck/       !!!!!!!!!!!!!!!!!!"
         echo "!!!!!!!!!!!!!!!!!! Delete lib/nblib.bck/ if you don't need it !!!!!!!!!!!!!!!!!!"
@@ -44,7 +44,7 @@ fi
 
 # Make sure nblib is populated.
 # (For cloned projects.)
-if [ ! -d "lib/nblib/src" ]; then
+if [[ ! -d "lib/nblib/src" ]]; then
     git submodule update lib/nblib
 fi
 
@@ -121,7 +121,7 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Serial - Exit with ctrl+c"
         echo "---------------------------------"
 
-        if [ -a $serial_port ]; then
+        if [[ -a $serial_port ]]; then
             set +e
             trap ' ' INT
 
@@ -161,7 +161,7 @@ for ((i = 0; i < ${#args}; i++)); do
     esac
 done
 
-if [ "$#" == "0" ]; then
+if [[ $# -eq 0 ]]; then
     echo "b -> Build"
     echo "m -> Show memory usage"
     echo "u -> Upload"
