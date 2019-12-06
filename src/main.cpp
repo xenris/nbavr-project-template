@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 void main() {
-    const uint64_t CpuFreq = 16000000;
+    const uint64_t cpuFreq = 16000000;
 
     using Timer = nblib::hw::Timer1;
     using LedPin = nblib::hw::PortB::Pin5;
@@ -9,7 +9,7 @@ void main() {
 
     Timer::waveform(Timer::Waveform::ctcOcra);
     Timer::OutputA::intEnable(true);
-    Timer::OutputA::value(CpuFreq / (256 * 2));
+    Timer::OutputA::value(cpuFreq / (256 * 2));
     Timer::clock(Timer::Clock::div256);
 
     LedPin::mode(LedPin::Mode::output);
