@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 void main() {
-    const uint64_t cpuFreq = 16000000;
+    constexpr uint64_t cpuFreq = 16000000;
 
     using Timer = nblib::hw::Timer1;
     using LedPin = nblib::hw::PortB::Pin5;
