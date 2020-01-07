@@ -106,7 +106,7 @@ for ((i = 0; i < ${#args}; i++)); do
 
         case $arch in
         "avr")
-            avrdude -b $upload_baud -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
+            avrdude -b $upload_baud -B $bitclock -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
 
             ;;
         "arm")
