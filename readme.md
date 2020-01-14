@@ -13,6 +13,7 @@ This is a template for creating projects for 8-bit AVR microcontrollers using th
 * Avr-binutils
 * Avr-libc
 * Avrdude
+* Picocom
 * Text editor
 
 ## Use

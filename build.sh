@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# build.sh - 3
+# build.sh - 4
 
 # Copyright (c) 2017 Henry Shepperd
 
@@ -118,32 +118,10 @@ for ((i = 0; i < ${#args}; i++)); do
         ;;
     's')
         echo "---------------------------------"
-        echo "Serial - Exit with ctrl+c"
+        echo "Serial - Exit with ctrl+a -> ctrl+x"
         echo "---------------------------------"
 
-        if [[ -a $serial_port ]]; then
-            set +e
-            trap ' ' INT
-
-            stty -F $serial_port $serial_baud -cstopb -parenb cs8 -echo -icanon raw
-            stty -echo -icanon
-
-            exec 3<> $serial_port
-            cat <&3 &
-            P1=$!
-            cat >&3
-
-            kill $P1
-            wait $P1 2>/dev/null
-
-            stty echo icanon
-
-            echo ''
-
-            set -e
-        else
-            echo "$serial_port does not exist"
-        fi
+        picocom --imap lfcrlf --omap crlf --baud $serial_baud $serial_port
 
         ;;
     'n')
