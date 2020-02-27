@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# build.sh - 4
+# build.sh - 5
 
 # Copyright (c) 2017 Henry Shepperd
 
@@ -106,7 +106,7 @@ for ((i = 0; i < ${#args}; i++)); do
 
         case $arch in
         "avr")
-            avrdude -b $upload_baud -B $bitclock -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
+            avrdude -C +avrdude.conf -b $upload_baud -B $bitclock -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
 
             ;;
         "arm")
