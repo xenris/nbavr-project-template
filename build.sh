@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# build.sh - 5
+# build.sh - 6
 
 # Copyright (c) 2017 Henry Shepperd
 
@@ -89,7 +89,7 @@ for ((i = 0; i < ${#args}; i++)); do
 
         case $arch in
         "avr")
-            avr-size $elf -C --mcu=$mmcu
+            avr-objdump -Pmem-usage $elf | tail -n +3
 
             ;;
         "arm")
