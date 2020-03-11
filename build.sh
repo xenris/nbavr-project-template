@@ -9,6 +9,7 @@
 set -e
 
 source ./build.config
+# source ./fuses.config
 
 if [[ "$mcu" =~ ^at.* ]]; then
     arch="avr"
