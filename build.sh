@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# build.sh - 6
+# build.sh - 7
 
 # Copyright (c) 2017 Henry Shepperd
 
@@ -9,7 +9,7 @@
 set -e
 
 source ./build.config
-# source ./fuses.config
+source ./fuses.config
 
 if [[ "$mcu" =~ ^at.* ]]; then
     arch="avr"
@@ -133,10 +133,45 @@ for ((i = 0; i < ${#args}; i++)); do
         git submodule update --remote lib/nblib
 
         ;;
+    'f')
+        if [[ $arch == "arm" ]]; then
+            echo "Fuse programming not available for ARM processors"
+            exit -1
+        fi
+
+        echo "!!! Warning !!!"
+        echo "If you change the wrong fuse bits you may need a high voltage programmer to fix your chip."
+        echo "Double check the values in \"fuses.config\"."
+        echo "Type \"yes\" to write fuse bits."
+
+        read line
+
+        if [[ $line == "yes" ]]; then
+            echo "---------------------------------"
+            echo "Writing fuse bits"
+            echo "---------------------------------"
+
+            case $arch in
+            "avr")
+                avrdude -C +avrdude.conf -b $upload_baud -B $bitclock -p $mmcu -P $upload_port -c $programmer -U efuse:w:$efuse:m -U hfuse:w:$hfuse:m -U lfuse:w:$lfuse:m
+
+                ;;
+            "arm")
+                # TODO
+
+                ;;
+            esac
+        else
+            echo "Cancelled"
+        fi
+
+
+        ;;
     ' ')
         ;;
     *)
         echo "$arg is not an option"
+        exit -1
     esac
 done
 
@@ -146,6 +181,7 @@ if [[ $# -eq 0 ]]; then
     echo "u -> Upload"
     echo "s -> Serial communication"
     echo "n -> Update nblib"
+    echo "f -> Write fuse bits"
     echo ""
     echo "e.g. ./build.sh bmus"
 fi
