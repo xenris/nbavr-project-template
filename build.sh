@@ -54,6 +54,7 @@ echo "-ffreestanding" >> .clang_complete
 echo "-Dexternally_visible=used" >> .clang_complete
 echo "-Dsignal=used" >> .clang_complete
 echo "-D__${mcu}__" >> .clang_complete
+echo "-std=c++20" >> .clang_complete
 
 elf="gen/firmware.elf"
 hex="gen/firmware.hex"
