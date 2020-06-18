@@ -71,7 +71,7 @@ for ((i = 0; i < ${#args}; i++)); do
         echo "Building"
         echo "---------------------------------"
 
-        PATHS=$(find src/ -name '*.c' -o -name '*.cpp' -o -name '*.S')
+        PATHS=$(find src/ lib/*/src/ -name '*.c' -o -name '*.cpp' -o -name '*.S')
 
         rm -f Tupresources
 

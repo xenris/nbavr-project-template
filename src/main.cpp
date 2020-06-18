@@ -1,18 +1,19 @@
 #include "main.hpp"
 
+constexpr uint64_t cpuFreq = 16000000;
+
+using Timer = nblib::hw::Timer1;
+using Sleep = nblib::hw::Sleep;
+using LedPin = nblib::hw::PortB::Pin5;
+using Pin = nblib::hw::Pin;
+
 void main() {
-    constexpr uint64_t cpuFreq = 16000000;
-
-    using Timer = nblib::hw::Timer1;
-    using LedPin = nblib::hw::PortB::Pin5;
-    using Sleep = nblib::hw::Sleep;
-
     Timer::waveform(Timer::Waveform::ctcOcra);
     Timer::OutputA::intEnable(true);
     Timer::OutputA::value(cpuFreq / (256 * 2));
     Timer::clock(Timer::Clock::div256);
 
-    LedPin::mode(LedPin::Mode::output);
+    LedPin::mode(Pin::Mode::output);
 
     Sleep::mode(Sleep::Mode::idle);
     Sleep::enable(true);
@@ -21,7 +22,9 @@ void main() {
 
     while(true) {
         Sleep::sleep();
-
-        LedPin::toggle();
     }
+}
+
+vectorTimer1CompareA {
+    LedPin::toggle();
 }
