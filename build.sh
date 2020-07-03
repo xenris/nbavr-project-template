@@ -108,7 +108,9 @@ for ((i = 0; i < ${#args}; i++)); do
 
         case $arch in
         "avr")
-            avrdude -C +avrdude.conf -b $upload_baud -B $bitclock -p $mmcu -P $upload_port -c $programmer -e -U flash:w:$hex
+            if [[ $disableAutoErase -eq 0 ]]; then D=''; else D='-D'; fi
+
+            avrdude -C +avrdude.conf -b $upload_baud -B $bitclock -p $mmcu -P $upload_port -c $programmer $D -U flash:w:$hex
 
             ;;
         "arm")
