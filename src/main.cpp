@@ -13,7 +13,7 @@ void main() {
     Timer::OutputA::value(cpuFreq / (256 * 2));
     Timer::clock(Timer::Clock::div256);
 
-    LedPin::mode(Pin::Mode::output);
+    LedPin::direction(Pin::Direction::output);
 
     Sleep::mode(Sleep::Mode::idle);
     Sleep::enable(true);
