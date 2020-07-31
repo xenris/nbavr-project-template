@@ -27,6 +27,7 @@ CFLAGS += -Wconversion
 CFLAGS += -Wsign-conversion
 CFLAGS += -Wfloat-conversion
 CFLAGS += -ffunction-sections
+CFLAGS += -fdata-sections
 CFLAGS += -g
 CFLAGS += -Os
 CFLAGS += -fdiagnostics-color=always
