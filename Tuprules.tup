@@ -40,9 +40,9 @@ CFLAGS += -ffreestanding
 CFLAGS += -fmax-errors=3
 CFLAGS += -Wl,-gc-sections
 
-CFLAGS_c += -std=c11
+CFLAGS_c += -std=c17
 
-CFLAGS_cpp += -std=c++17
+CFLAGS_cpp += -std=c++20
 CFLAGS_cpp += -fno-exceptions
 CFLAGS_cpp += -fno-threadsafe-statics
 CFLAGS_cpp += -Wzero-as-null-pointer-constant
