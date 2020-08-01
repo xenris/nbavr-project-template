@@ -2,4 +2,4 @@
 
 ### Use
 
-* See [nblib-script](https://github.com/xenris/nblib-script)
+See [nblib-script](https://github.com/xenris/nblib-script)
