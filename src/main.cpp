@@ -26,5 +26,5 @@ void main() {
 }
 
 vectorTimer1CompareA {
-    LedPin::toggle();
+    LedPin::outputToggle();
 }
