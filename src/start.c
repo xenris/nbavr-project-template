@@ -1,5 +1,7 @@
 // Startup handler.
 
+#ifdef __ARM__
+
 void main(void);
 
 void _estack(void);
@@ -141,3 +143,5 @@ static vector_f vectors[] __attribute__((section(".isr_vector"), used)) = {
     vector_48,
     vector_49,
 };
+
+#endif
