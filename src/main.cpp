@@ -3,7 +3,7 @@
 constexpr uint64_t cpuFreq = 16000000;
 constexpr uint64_t serialBaud = 115200;
 
-using Timer = nblib::hw::Timer1;
+using Tc = nblib::hw::Tc1;
 using Usart = nblib::hw::Usart0;
 using Sleep = nblib::hw::Sleep;
 using LedPin = nblib::hw::PortB::Pin5;
@@ -16,10 +16,10 @@ static nblib::Queue<char, 32> cout;
 static bool _wake = false;
 
 void main() {
-    Timer::waveform(Timer::Waveform::ctcOcra);
-    Timer::compareAIntEnable(true);
-    Timer::compareA(cpuFreq / 256);
-    Timer::clock(Timer::Clock::div256);
+    Tc::waveform(Tc::Waveform::ctcOcra);
+    Tc::compareAIntEnable(true);
+    Tc::compareA(cpuFreq / 256);
+    Tc::clock(Tc::Clock::div256);
 
     LedPin::direction(Pin::Direction::output);
 
@@ -55,7 +55,7 @@ static void flushUsart(void*) {
     Usart::dataRegisterEmptyIntEnable(true);
 }
 
-vectorTimer1CompareA {
+vectorTc1CompareA {
     _wake = true;
 }
 
