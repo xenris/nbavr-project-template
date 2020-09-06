@@ -7,7 +7,6 @@ using Tc = nblib::hw::Tc1;
 using Usart = nblib::hw::Usart0;
 using Sleep = nblib::hw::Sleep;
 using LedPin = nblib::hw::PortB::Pin5;
-using Pin = nblib::hw::Pin;
 
 static void flushUsart(void*);
 
@@ -21,7 +20,7 @@ void main() {
     Tc::compareA(cpuFreq / 256);
     Tc::clock(Tc::Clock::div256);
 
-    LedPin::direction(Pin::Direction::output);
+    LedPin::direction(LedPin::Direction::output);
 
     cout.setCallback(flushUsart, (void*)nullptr);
 
