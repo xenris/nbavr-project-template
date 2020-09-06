@@ -6,4 +6,4 @@ CFLAGS += -mcpu=$(mmcu)
 CFLAGS += -mthumb
 CFLAGS += -nostdlib
 CFLAGS += -D__ARM__
-CFLAGS += -Tld/stm32.ld
+CFLAGS += -Tlib/nblib/ld/stm32.ld
